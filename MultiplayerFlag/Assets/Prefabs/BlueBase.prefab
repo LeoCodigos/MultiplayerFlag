@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2749945959194223657}
   - component: {fileID: 1569522901897070545}
   - component: {fileID: 1297518446087271395}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1671891419148332754}
   - component: {fileID: 6088068837276215562}
   - component: {fileID: 8882210379531833133}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlueBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,8 +137,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 0.04, z: 2}
-  m_Center: {x: 0, y: 0.02, z: 0}
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &8882210379531833133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215a75e5b5e988445877f8346b89e4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: {fileID: 6483581301290979357}
+  flag: {fileID: 2716400691316063091}
 --- !u!1001 &3572343899291563922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +160,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1671891419148332754}
     m_Modifications:
+    - target: {fileID: -8154668584535534816, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3444921196
+      objectReference: {fileID: 0}
     - target: {fileID: 948620581442315848, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -200,6 +204,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1450471135380131041, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 7335556518690056779}
     - target: {fileID: 7523770116322813839, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
       propertyPath: m_Name
       value: BandeiraAzul
@@ -209,13 +217,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
+--- !u!114 &2716400691316063091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1450471135380131041, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
+  m_PrefabInstance: {fileID: 3572343899291563922}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b13610611e9bb468b216bb3cc8096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4375720643559215578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 948620581442315848, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
-  m_PrefabInstance: {fileID: 3572343899291563922}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6483581301290979357 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7523770116322813839, guid: 71f1247c1c99f904f8a1d252803058b1, type: 3}
   m_PrefabInstance: {fileID: 3572343899291563922}
   m_PrefabAsset: {fileID: 0}

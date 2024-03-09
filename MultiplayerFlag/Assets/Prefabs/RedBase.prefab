@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2749945959194223657}
   - component: {fileID: 1569522901897070545}
   - component: {fileID: 1297518446087271395}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1671891419148332754}
   - component: {fileID: 6088068837276215562}
   - component: {fileID: 8882210379531833133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RedBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,8 +137,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 0.04, z: 2}
-  m_Center: {x: 0, y: 0.02, z: 0}
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &8882210379531833133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215a75e5b5e988445877f8346b89e4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: {fileID: 981397408717942253}
+  flag: {fileID: 2339442094997163650}
 --- !u!1001 &7347432236049877602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,11 +213,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004784b3d3f91334ea130234f6fa63db, type: 3}
---- !u!1 &981397408717942253 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7523770116322813839, guid: 004784b3d3f91334ea130234f6fa63db, type: 3}
+--- !u!114 &2339442094997163650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5008016531643630816, guid: 004784b3d3f91334ea130234f6fa63db, type: 3}
   m_PrefabInstance: {fileID: 7347432236049877602}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b13610611e9bb468b216bb3cc8096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7556336299221691434 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 948620581442315848, guid: 004784b3d3f91334ea130234f6fa63db, type: 3}

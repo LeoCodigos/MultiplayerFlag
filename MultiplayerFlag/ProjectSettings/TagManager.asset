@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BlueFlag
-  - RedFlag
+  - Flag
   layers:
   - Default
   - TransparentFX

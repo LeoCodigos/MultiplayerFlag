@@ -12,13 +12,21 @@ public class Flag : MonoBehaviour
         this.transform.rotation=Quaternion.identity;
     }
 
+    public void PickUpFlag(){
+        this.transform.parent=null;
+    }
+
     private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
+        if(other.gameObject.CompareTag("Player")&& other.gameObject.layer==this.gameObject.layer){
             ReturnFlag();
         }
-    }
-    void Start(){
-        this.gameObject.layer=4;
+        else if(other.gameObject.CompareTag("Player")&& other.gameObject.layer!=this.gameObject.layer){
+            //this.transform.parent=other.GetComponent<Player>().Hand;
+            this.transform.parent=other.transform;
+            //PickUpFlag();
+            Debug.Log("Peguei");
+        }
+
     }
  
 }

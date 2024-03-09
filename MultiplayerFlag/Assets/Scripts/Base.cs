@@ -5,29 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Base : MonoBehaviour
-{
-
-    #region Atributos
-    [SerializeField] private GameObject flag;
-
-    #endregion
-    
-   
+{  
 
     private void OnTriggerEnter(Collider other){
-        
+        if(other.gameObject.CompareTag("Flag")&&other.gameObject.layer!=this.gameObject.layer){
+            if(other.gameObject.layer==LayerMask.NameToLayer("Blue")){
+                CaptureController.instance.BlueFlagCapture();
+            }else CaptureController.instance.RedFlagCapture();
+        }
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
