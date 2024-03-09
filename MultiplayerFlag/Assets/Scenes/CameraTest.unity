@@ -261,9 +261,9 @@ GameObject:
   - component: {fileID: 856231046}
   - component: {fileID: 856231045}
   - component: {fileID: 856231044}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Plane
-  m_TagString: Chao
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
