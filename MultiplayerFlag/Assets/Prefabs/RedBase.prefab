@@ -200,6 +200,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5008016531643630816, guid: 004784b3d3f91334ea130234f6fa63db, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 7335556518690056779}
     - target: {fileID: 7523770116322813839, guid: 004784b3d3f91334ea130234f6fa63db, type: 3}
       propertyPath: m_Name
       value: BandeiraVermelha

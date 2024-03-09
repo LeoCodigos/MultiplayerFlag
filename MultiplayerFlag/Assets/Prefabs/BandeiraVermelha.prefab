@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 948620581442315848}
   - component: {fileID: -3204334784805727264}
+  - component: {fileID: 5008016531643630816}
   m_Layer: 0
   m_Name: BandeiraVermelha
   m_TagString: RedFlag
@@ -139,6 +140,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7691912, y: 1.5983747, z: 0.29936945}
   m_Center: {x: -0.2913498, y: 0.81574935, z: 0}
+--- !u!114 &5008016531643630816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523770116322813839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b13610611e9bb468b216bb3cc8096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
 --- !u!1 &8419985164375114384
 GameObject:
   m_ObjectHideFlags: 0

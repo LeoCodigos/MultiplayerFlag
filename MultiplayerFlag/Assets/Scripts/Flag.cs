@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flag : MonoBehaviour
 {
     [SerializeField]private GameObject spawnPoint;
-     void ReturnFlag()
+    public void ReturnFlag()
     {
         this.transform.parent=null;
         this.transform.position= spawnPoint.transform.position;
@@ -16,6 +16,9 @@ public class Flag : MonoBehaviour
         if(other.gameObject.CompareTag("Player")){
             ReturnFlag();
         }
+    }
+    void Start(){
+        this.gameObject.layer=4;
     }
  
 }

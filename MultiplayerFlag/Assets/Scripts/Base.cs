@@ -12,17 +12,10 @@ public class Base : MonoBehaviour
 
     #endregion
     
-    void ReturnFlag()
-    {
-        flag.transform.parent=null;
-        flag.transform.position= this.transform.position;
-        flag.transform.rotation=Quaternion.identity;
-    }
+   
 
     private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
-            ReturnFlag();
-        }
+        
 
     }
 
