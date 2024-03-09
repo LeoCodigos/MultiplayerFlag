@@ -2,52 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public bool pause = false, isGround, isRestore;
     public float vel, velRot, pulo;
+    [SerializeField] private bool movePress, jumpPress;
+    [SerializeField] private Vector2 currentMove;
+    [SerializeField] private Vector3 dir;
+
 
     [SerializeField] private Rigidbody rigid;
     private Animator anim;
-    public PlayerInputActions input;
     public LayerMask chao;
+    public PlayerInputActions input;
     private InputAction mover, pular;
 
 
 
-    void Movimentar()
+    void Movimentar(Vector2 dir)
     {
-        //Movimentos Básicos
-        
         Vector3 velFis = Vector3.zero;
 
         //Andar para frente e andar para trás
-        if(mover.ReadValue<Vector2>().y > 0)
+        if(dir != Vector2.zero)
         {
-            velFis = transform.forward * mover.ReadValue<Vector2>().y * vel * Time.fixedDeltaTime;
-        }else
-        {
-            //Rotacionar
-            transform.Rotate(0, mover.ReadValue<Vector2>().y * velRot, 0);
+            velFis = new Vector3(dir.x * vel, rigid.velocity.y, dir.y * vel) * Time.fixedDeltaTime;
         }
 
         velFis.y = (rigid.velocity.y < 0) ? rigid.velocity.y * 1.05f : rigid.velocity.y;
 
         rigid.velocity = velFis;
 
-        //Rotacionar
-        transform.Rotate(0, mover.ReadValue<Vector2>().x * velRot, 0);
-
         //Atualiza a Máquina de Estados (FSM)
         AttFSM(false);
+
+        if(dir != Vector2.zero)
+        {
+            Rotacionar();
+        }
 
         //Descongela a velocidade das animações
         isRestore = Physics.CheckSphere(transform.GetChild(1).position, 0.5f, chao, QueryTriggerInteraction.Ignore);
         if(isRestore)
         {
             Descongelar();
-        }
+        }        
+    }
+
+    void Rotacionar()
+    {
+        dir = new Vector3(currentMove.x, 0, currentMove.y);
+
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+        Quaternion playerRot = Quaternion.Slerp(transform.rotation, targetRot, velRot * Time.fixedDeltaTime);
+
+        transform.rotation = playerRot;
     }
 
     public void Pular(InputAction.CallbackContext context)
@@ -69,7 +80,7 @@ public class Player : MonoBehaviour
     public void Congelar()
     {
         Debug.Log("Cogelando");
-        anim.speed = 0.0f;
+        anim.speed = 0.2f;
     }
 
     void Descongelar()
@@ -87,7 +98,7 @@ public class Player : MonoBehaviour
     }
 
     void AttFSM(bool isGround){
-        if(mover.ReadValue<Vector2>().y != 0)
+        if(currentMove != Vector2.zero)
         {
             anim.SetBool("movimentando", true);
         }else
@@ -97,7 +108,7 @@ public class Player : MonoBehaviour
 
         if(isGround)
         {
-             anim.SetTrigger("pular");
+            anim.SetTrigger("pular");
         }
     }
 
@@ -111,24 +122,28 @@ public class Player : MonoBehaviour
 
     void OnEnable()
     {
-        mover = input.Player.Move;
         mover.Enable();
         
-
-        pular = input.Player.Jump;
+                
         pular.Enable();
         pular.performed += Pular;
     }
 
     void OnDisable()
     {
-
+        pular.Disable();
     }
 
     void Awake()
     {
         input = new PlayerInputActions();
-        input.Player.Move.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
+        mover = input.Player.Move;
+        pular = input.Player.Jump;
+
+        mover.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
+               
+
+        pular.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
     }
 
     void Start()
@@ -140,13 +155,12 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(pause == false){
-            Movimentar();
+        currentMove = mover.ReadValue<Vector2>();
+
+        if(pause == false)
+        {
+            if(IsOwner == true)
+            Movimentar(currentMove);
         }
-    }
-
-    void Update()
-    {
-
     }
 }
