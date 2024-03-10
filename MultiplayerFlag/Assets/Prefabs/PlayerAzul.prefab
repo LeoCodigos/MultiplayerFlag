@@ -991,6 +991,7 @@ MonoBehaviour:
   jumpPress: 0
   currentMove: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
+  hand: {fileID: 6070856988961526321}
   rigid: {fileID: 0}
   chao:
     serializedVersion: 2

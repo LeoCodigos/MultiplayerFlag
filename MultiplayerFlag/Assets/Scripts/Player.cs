@@ -11,6 +11,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private bool movePress, jumpPress;
     [SerializeField] private Vector2 currentMove;
     [SerializeField] private Vector3 dir;
+    [SerializeField] private Transform hand;
 
 
     [SerializeField] private Rigidbody rigid;
@@ -20,6 +21,9 @@ public class Player : NetworkBehaviour
     private InputAction mover, pular;
 
 
+    public Transform GetHand(){
+        return hand;
+    }
 
     void Movimentar(Vector2 dir)
     {
