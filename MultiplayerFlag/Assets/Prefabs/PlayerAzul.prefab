@@ -476,7 +476,7 @@ Transform:
   m_GameObject: {fileID: 1945998010108242579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -799,12 +799,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5913139137155080714}
   - component: {fileID: 902003891031361771}
-  - component: {fileID: 2978104803646126936}
-  - component: {fileID: 7306060857083587956}
+  - component: {fileID: -7184044631049154673}
+  - component: {fileID: -71958950208020304}
   - component: {fileID: 7372949282632102182}
   - component: {fileID: 6728206881645396880}
   - component: {fileID: 736934644563773063}
   - component: {fileID: 1393712710017161677}
+  - component: {fileID: 8041350461934229318}
   m_Layer: 7
   m_Name: PlayerAzul
   m_TagString: Player
@@ -827,8 +828,8 @@ Transform:
   m_Children:
   - {fileID: 5770663973639361569}
   - {fileID: 9092666574214238570}
-  - {fileID: 37353614711212355}
   - {fileID: 5374854100678997140}
+  - {fileID: 37353614711212355}
   - {fileID: 8889377422479447181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -853,7 +854,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &2978104803646126936
+--- !u!114 &-7184044631049154673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -862,7 +863,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2742542719333411216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d51e4d20d58aab4fa9af814e0aba450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UseUnreliableDeltas: 0
@@ -884,7 +885,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &7306060857083587956
+--- !u!114 &-71958950208020304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -985,10 +986,30 @@ MonoBehaviour:
   vel: 200
   velRot: 10
   pulo: 5
+  movePress: 0
+  jumpPress: 0
+  currentMove: {x: 0, y: 0}
+  dir: {x: 0, y: 0, z: 0}
   rigid: {fileID: 0}
   chao:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &8041350461934229318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742542719333411216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811bf6633a18cbf42916b204923b6a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 2100000, guid: 24c3f12eb0db6604090594b8e9ea2e3b, type: 2}
+  blue: {fileID: 2100000, guid: 3f2a11d7a96d9d44cac6100b3956702b, type: 2}
+  buttonBlue: {fileID: 0}
+  buttonRed: {fileID: 0}
 --- !u!1 &2840931280416246138
 GameObject:
   m_ObjectHideFlags: 0

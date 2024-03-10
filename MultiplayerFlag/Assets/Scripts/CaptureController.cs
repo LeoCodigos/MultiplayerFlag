@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 
-public class CaptureController : MonoBehaviour
+public class CaptureController : NetworkBehaviour
 {
     #region Atributos
     private NetworkVariable<int> redPoints=new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
@@ -19,15 +19,21 @@ public class CaptureController : MonoBehaviour
 
     public void BlueFlagCapture(){
         //redPoints++;
-        redPoints.Value++;
-        RedScoreUpdate();
-        blueFlag.ReturnFlag();
+        if(IsOwner==true){
+             redPoints.Value++;
+            RedScoreUpdate();
+            blueFlag.ReturnFlag();
+        }
+       
     }
     public void RedFlagCapture(){
         //bluePoints++;
-        bluePoints.Value++;
-        BlueScoreUpdate();
-        redFlag.ReturnFlag();
+        if(IsOwner){
+            bluePoints.Value++;
+            BlueScoreUpdate();
+            redFlag.ReturnFlag();
+        }
+        
     }
 
     void RedScoreUpdate(){
@@ -35,6 +41,13 @@ public class CaptureController : MonoBehaviour
     }
      void BlueScoreUpdate(){
         blueScore.text=bluePoints.Value.ToString();
+    }
+
+    public override void OnNetworkSpawn(){
+        base.OnNetworkSpawn();
+        redPoints.OnValueChanged+=(int pastValue, int newValue)=>{
+             Debug.Log(OwnerClientId + "\tNumero Aleatorio: " + newValue);
+        };
     }
 
     void Start()
