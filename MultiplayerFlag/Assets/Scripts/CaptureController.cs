@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 
-public class CaptureController : NetworkBehaviour
+public class CaptureController : MonoBehaviour
 {
     #region Atributos
-    private NetworkVariable<int> redPoints=new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
-    private NetworkVariable<int> bluePoints= new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
+    private NetworkVariable<int> redPoints=new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Server);
+    private NetworkVariable<int> bluePoints= new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Server);
     [SerializeField]private GameObject blueBase,redBase;
     [SerializeField]private Flag blueFlag,redFlag;
     [SerializeField]private TMP_InputField redScore,blueScore;
@@ -19,20 +19,17 @@ public class CaptureController : NetworkBehaviour
 
     public void BlueFlagCapture(){
         //redPoints++;
-        if(IsOwner==true){
-             redPoints.Value++;
+      
+            redPoints.Value++;
             RedScoreUpdate();
             blueFlag.ReturnFlag();
-        }
        
     }
     public void RedFlagCapture(){
         //bluePoints++;
-        if(IsOwner){
             bluePoints.Value++;
             BlueScoreUpdate();
             redFlag.ReturnFlag();
-        }
         
     }
 
@@ -41,13 +38,6 @@ public class CaptureController : NetworkBehaviour
     }
      void BlueScoreUpdate(){
         blueScore.text=bluePoints.Value.ToString();
-    }
-
-    public override void OnNetworkSpawn(){
-        base.OnNetworkSpawn();
-        redPoints.OnValueChanged+=(int pastValue, int newValue)=>{
-             Debug.Log(OwnerClientId + "\tNumero Aleatorio: " + newValue);
-        };
     }
 
     void Start()

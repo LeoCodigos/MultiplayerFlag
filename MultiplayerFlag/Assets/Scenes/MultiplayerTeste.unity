@@ -544,7 +544,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332487503}
-  - component: {fileID: 1332487504}
   - component: {fileID: 1332487502}
   m_Layer: 0
   m_Name: CaptureController
@@ -566,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueBase: {fileID: 345584504}
-  redBase: {fileID: 0}
+  redBase: {fileID: 7335556518690056779, guid: 917bf8bcc2f88354eb2e3d55d40e0b72, type: 3}
   blueFlag: {fileID: 1445174011}
   redFlag: {fileID: 883914346}
   redScore: {fileID: 4093512245668220502}
@@ -586,27 +585,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1332487504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332487501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 581889924
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &1445174011 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2716400691316063091, guid: dfe4372407c6d37418ebd1f8f8df6afe, type: 3}

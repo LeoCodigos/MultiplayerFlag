@@ -17,6 +17,7 @@ public class Flag : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other){
+        
         if(other.gameObject.CompareTag("Player")&& other.gameObject.layer==this.gameObject.layer){
             ReturnFlag();
         }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using Unity.Netcode.Components;
 
-namespace Unity.Multiplayer.Samples.Utilities.ClientAutority
+namespace Unity.Multiplayer.Samples.Utilities.OwnerAutority
 {
     [DisallowMultipleComponent]
-    public class ClientNetworkAnimator : NetworkAnimator
+    public class OwnerNetworkAnimator : NetworkAnimator
     {
           protected override bool OnIsServerAuthoritative()
         {
