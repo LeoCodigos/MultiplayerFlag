@@ -13,6 +13,8 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private Button buttonServer,buttonHost,buttonClient;
     [SerializeField] private TMP_InputField ipField;
 
+    public static NetworkManagerUI instance;
+
     #endregion
  
     void Awake()
@@ -31,12 +33,16 @@ public class NetworkManagerUI : MonoBehaviour
     }
 
     void TryConnect(){
-        string ipAdress=ipField.text;
-        if(ipAdress==null||ipAdress.Length==0)ipAdress="127.0.0.1";
-        UnityTransport transport=(UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
-        transport.ConnectionData.Address=ipAdress;
-        NetworkManager.Singleton.StartClient();
+        string ipAdress = ipField.text;
+        if(ipAdress == null || ipAdress.Length == 0){
+            ipAdress = "127.0.0.1";
+        }
+        UnityTransport transport = (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
+        transport.ConnectionData.Address = ipAdress;
+        NetworkManager.Singleton.StartClient();        
+    }
 
-        
+    void Start(){
+        instance = this;
     }
 }
