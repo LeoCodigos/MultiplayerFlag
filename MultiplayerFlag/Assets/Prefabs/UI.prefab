@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -230, y: -345}
+  m_AnchoredPosition: {x: -230, y: -469}
   m_SizeDelta: {x: 320, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1258792406829132184
@@ -2631,7 +2631,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3718274720009697594}
-  - component: {fileID: 2943483792979608147}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -2664,18 +2663,3 @@ RectTransform:
   m_AnchoredPosition: {x: -960, y: -540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2943483792979608147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9145725843727388599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57290e0defa6b6f458fed5400fd81597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonServer: {fileID: 3520229510537271184}
-  buttonHost: {fileID: 638487079873377701}
-  buttonClient: {fileID: 7731037804418195098}

@@ -17,8 +17,9 @@ public class NetworkManagerUI : MonoBehaviour
 
     #endregion
  
-    void Awake()
+    void Start()
     {
+        instance = this;
         buttonHost.onClick.AddListener(()=>{
             NetworkManager.Singleton.StartHost();
         });
@@ -42,7 +43,4 @@ public class NetworkManagerUI : MonoBehaviour
         NetworkManager.Singleton.StartClient();        
     }
 
-    void Start(){
-        instance = this;
-    }
 }

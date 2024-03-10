@@ -338,6 +338,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7335556518690056779, guid: dfe4372407c6d37418ebd1f8f8df6afe, type: 3}
   m_PrefabInstance: {fileID: 1840986007}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &363007009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2580112978567005277, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
+  m_PrefabInstance: {fileID: 4093512245668220496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &378257091 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7731037804418195098, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
@@ -347,17 +358,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &457569614 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2580112978567005277, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
-  m_PrefabInstance: {fileID: 4093512245668220496}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &705507993
@@ -601,8 +601,8 @@ MonoBehaviour:
   redBase: {fileID: 7335556518690056779, guid: 917bf8bcc2f88354eb2e3d55d40e0b72, type: 3}
   blueFlag: {fileID: 1445174011}
   redFlag: {fileID: 883914346}
-  redScore: {fileID: 4093512245668220502}
-  blueScore: {fileID: 1711153572}
+  redScore: {fileID: 0}
+  blueScore: {fileID: 0}
 --- !u!4 &1332487503
 Transform:
   m_ObjectHideFlags: 0
@@ -722,7 +722,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
-    ServerListenAddress: 127.0.0.1
+    ServerListenAddress: 0.0.0.0
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -742,18 +742,7 @@ MonoBehaviour:
   buttonServer: {fileID: 2111567786}
   buttonHost: {fileID: 719879873}
   buttonClient: {fileID: 378257091}
-  ipField: {fileID: 457569614}
---- !u!114 &1711153572 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2268192461983355887, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
-  m_PrefabInstance: {fileID: 4093512245668220496}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  ipField: {fileID: 363007009}
 --- !u!1 &1774407610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,27 +1402,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5298534598041062766, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -469
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2943483792979608147, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
---- !u!114 &4093512245668220502 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1981662692562392395, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
-  m_PrefabInstance: {fileID: 4093512245668220496}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
