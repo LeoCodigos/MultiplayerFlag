@@ -44,7 +44,7 @@ public class CaptureController : MonoBehaviour
     {
         if(instance==null){
             instance=this;
-        }else Destroy(gameObject);
+        }
     }
 
    
