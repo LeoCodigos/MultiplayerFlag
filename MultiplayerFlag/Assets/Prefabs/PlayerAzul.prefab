@@ -502,7 +502,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: cfd406b519d3d9c45adc4c3589a87059, type: 3}
+  - {fileID: 2100000, guid: 3f2a11d7a96d9d44cac6100b3956702b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -991,6 +991,11 @@ MonoBehaviour:
   currentMove: {x: 0, y: 0}
   dir: {x: 0, y: 0, z: 0}
   hand: {fileID: 6070856988961526321}
+  blue: {fileID: 2100000, guid: 3f2a11d7a96d9d44cac6100b3956702b, type: 2}
+  red: {fileID: 2100000, guid: 24c3f12eb0db6604090594b8e9ea2e3b, type: 2}
+  skin: {fileID: 1945998010108242579}
+  teamId:
+    m_InternalValue: 7
   rigid: {fileID: 0}
   chao:
     serializedVersion: 2

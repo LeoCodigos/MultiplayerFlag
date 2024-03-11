@@ -24,7 +24,7 @@ public class GameManager : NetworkBehaviour
         redPoints.Value++; 
     }
 
-       public NetworkVariable<int>GetBluePoints{
+    public NetworkVariable<int>GetBluePoints{
         get=>bluePoints;
     }
      public void SetBluePoints(){
@@ -35,11 +35,18 @@ public class GameManager : NetworkBehaviour
     void BluePointUpdate(){
         blueScore.text=bluePoints.Value.ToString();
     }
+    void RedPointUpdate(){
+        redScore.text=redPoints.Value.ToString();
+    }
 
     public override void OnNetworkSpawn()
     {
         bluePoints.OnValueChanged+=(int pastValue,int newValue)=>{
             BluePointUpdate();
+            Debug.Log("Passei");
+        };
+         redPoints.OnValueChanged+=(int pastValue,int newValue)=>{
+            RedPointUpdate();
             Debug.Log("Passei");
         };
     }
