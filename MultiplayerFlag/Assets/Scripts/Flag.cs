@@ -26,7 +26,7 @@ public class Flag : NetworkBehaviour
                 ocupado = true;
                 //this.transform.parent = other.transform;
                 this.NetworkObject.TrySetParent(other.gameObject,false);         
-                this.transform.position = other.GetComponent<Player>().GetHand().position - new Vector3(0.1f, 0.8f, 0);
+                this.transform.position = other.GetComponent<Player>().GetBack().position - new Vector3(0.1f, 0.8f, 0);
                 this.transform.rotation = Quaternion.identity;//other.GetComponent<Player>().GetHand().rotation ;
                 Debug.Log("Peguei");
             }            

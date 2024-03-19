@@ -6,14 +6,17 @@ using Unity.Netcode.Components;
 
 public class Player : NetworkBehaviour
 {
+    #region Atributes
     public bool pause = false, isGround, isRestore;
     public float vel, velRot, pulo;
     [SerializeField] private bool movePress, jumpPress;
     [SerializeField] private Vector2 currentMove;
     [SerializeField] private Vector3 dir;
-    [SerializeField] private Transform hand;
+    [SerializeField] private Transform back;
     [SerializeField] private Material blue,red;
     [SerializeField] private GameObject skin;
+
+    private Gun gun;
 
     [SerializeField] private NetworkVariable<int>teamId=new NetworkVariable<int>(7,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
 
@@ -22,13 +25,18 @@ public class Player : NetworkBehaviour
     private Animator anim;
     public LayerMask chao;
     public PlayerInputActions input;
-    private InputAction mover, pular, teamSwap;
+    private InputAction mover, pular, teamSwap, fire;
 
-   
-    public Transform GetHand(){
-        return hand;
+    #endregion
+
+    #region Gets
+    public Transform GetBack(){
+        return back;
     }
 
+    #endregion
+
+    #region Methods
     public void SwapTeam(){
         if(!IsOwner)return;
         if(teamId.Value==7){
@@ -46,6 +54,11 @@ public class Player : NetworkBehaviour
             else skin.GetComponent<SkinnedMeshRenderer>().material=blue;
             Debug.Log("Troquei de Time");
         };
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        gun.Fire();
     }
 
     void Movimentar(Vector2 dir)
@@ -106,20 +119,7 @@ public class Player : NetworkBehaviour
     public void TeamSwap(InputAction.CallbackContext context){
         SwapTeam();
     }
-
-    //Congela a animação do pulo no apice do salto
-    public void Congelar()
-    {
-        Debug.Log("Cogelando");
-        anim.speed = 0.2f;
-    }
-
-    void Descongelar()
-    {
-        Debug.Log("Descongelou");
-        anim.speed = 1.0f;
-    }
-
+  
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -127,7 +127,9 @@ public class Player : NetworkBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(transform.GetChild(1).transform.position, 0.5f);
     }
+      #endregion
 
+    #region StatesFSM
     void AttFSM(bool isGround){
         if(currentMove != Vector2.zero)
         {
@@ -151,6 +153,21 @@ public class Player : NetworkBehaviour
         }
     }
 
+       //Congela a animação do pulo no apice do salto
+    public void Congelar()
+    {
+        Debug.Log("Cogelando");
+        anim.speed = 0.2f;
+    }
+
+    void Descongelar()
+    {
+        Debug.Log("Descongelou");
+        anim.speed = 1.0f;
+    }
+
+    #endregion
+
     void OnEnable()
     {
         mover.Enable();
@@ -161,12 +178,16 @@ public class Player : NetworkBehaviour
 
         teamSwap.Enable();
         teamSwap.performed += TeamSwap;
+
+        fire.Enable();
+        fire.performed += Fire;
     }
 
     void OnDisable()
     {
         pular.Disable();
         teamSwap.Disable();
+        fire.Disable();
     }
 
     void Awake()
@@ -175,18 +196,20 @@ public class Player : NetworkBehaviour
         mover = input.Player.Move;
         pular = input.Player.Jump;
         teamSwap = input.Player.TeamSwap;
+        fire = input.Player.Fire;
 
         mover.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
                
-
         pular.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
 
-
         teamSwap.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
+
+        fire.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
     }
 
     void Start()
     {
+        gun= GetComponentInChildren<Gun>();
         rigid = gameObject.GetComponent<Rigidbody>();
         rigid.isKinematic = false;
         anim = gameObject.GetComponent<Animator>();
@@ -201,8 +224,5 @@ public class Player : NetworkBehaviour
             if(IsOwner == true)
             Movimentar(currentMove);
         }
-    }
-    void Update(){
-        
     }
 }
