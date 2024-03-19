@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using Unity.Netcode.Components;
+
 
 public class Player : NetworkBehaviour
 {
@@ -11,15 +11,42 @@ public class Player : NetworkBehaviour
     [SerializeField] private bool movePress, jumpPress;
     [SerializeField] private Vector2 currentMove;
     [SerializeField] private Vector3 dir;
+    [SerializeField] private Transform hand;
+    [SerializeField] private Material blue,red;
+    [SerializeField] private GameObject skin;
+
+    [SerializeField] private NetworkVariable<int>teamId=new NetworkVariable<int>(7,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
 
 
     [SerializeField] private Rigidbody rigid;
     private Animator anim;
     public LayerMask chao;
     public PlayerInputActions input;
-    private InputAction mover, pular;
+    private InputAction mover, pular, teamSwap;
 
+   
+    public Transform GetHand(){
+        return hand;
+    }
 
+    public void SwapTeam(){
+        if(!IsOwner)return;
+        if(teamId.Value==7){
+            teamId.Value=6;
+        }else{
+            teamId.Value=7;
+        } 
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        teamId.OnValueChanged+=(int pastValue,int newValue)=>{
+            this.gameObject.layer=teamId.Value;
+            if(this.gameObject.layer==6)skin.GetComponent<SkinnedMeshRenderer>().material=red;
+            else skin.GetComponent<SkinnedMeshRenderer>().material=blue;
+            Debug.Log("Troquei de Time");
+        };
+    }
 
     void Movimentar(Vector2 dir)
     {
@@ -76,6 +103,10 @@ public class Player : NetworkBehaviour
         AttFSM(isGround);
     }
 
+    public void TeamSwap(InputAction.CallbackContext context){
+        SwapTeam();
+    }
+
     //Congela a animação do pulo no apice do salto
     public void Congelar()
     {
@@ -127,11 +158,15 @@ public class Player : NetworkBehaviour
                 
         pular.Enable();
         pular.performed += Pular;
+
+        teamSwap.Enable();
+        teamSwap.performed += TeamSwap;
     }
 
     void OnDisable()
     {
         pular.Disable();
+        teamSwap.Disable();
     }
 
     void Awake()
@@ -139,11 +174,15 @@ public class Player : NetworkBehaviour
         input = new PlayerInputActions();
         mover = input.Player.Move;
         pular = input.Player.Jump;
+        teamSwap = input.Player.TeamSwap;
 
         mover.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
                
 
         pular.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
+
+
+        teamSwap.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
     }
 
     void Start()
@@ -162,5 +201,8 @@ public class Player : NetworkBehaviour
             if(IsOwner == true)
             Movimentar(currentMove);
         }
+    }
+    void Update(){
+        
     }
 }
