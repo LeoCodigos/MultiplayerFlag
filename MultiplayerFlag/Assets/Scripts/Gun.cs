@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     #region Atributes
+
+    [Header("Reference")]
+    [SerializeField] private GunData gunData;
     private NetworkVariable<int> ammunition= new NetworkVariable<int>(10,NetworkVariableReadPermission.Owner,NetworkVariableWritePermission.Owner);
     [SerializeField]private NetworkObject bullet;
 
@@ -19,7 +22,16 @@ public class Gun : MonoBehaviour
 
     public void Fire(){
         
+        
+        var instance=Instantiate(bullet,spawn.position,Quaternion.identity);
+        var instanceNO=instance.GetComponent<NetworkObject>();
+        instanceNO.Spawn();
         //bullet.Spawn();
+    }
+
+    public void Reload(){
+
+
     }
 
     void Start()

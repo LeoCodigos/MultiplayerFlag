@@ -23,6 +23,7 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private Rigidbody rigid;
     private Animator anim;
+    private NetworkAnimator netAnim;
     public LayerMask chao;
     public PlayerInputActions input;
     private InputAction mover, pular, teamSwap, fire;
@@ -58,6 +59,7 @@ public class Player : NetworkBehaviour
 
     public void Fire(InputAction.CallbackContext context)
     {
+        if(IsOwner)
         gun.Fire();
     }
 
@@ -103,9 +105,11 @@ public class Player : NetworkBehaviour
 
     public void Pular(InputAction.CallbackContext context)
     {
+
         //Debug.Log("Pular");
         isGround = Physics.CheckSphere(transform.GetChild(0).position, 0.1f, chao, QueryTriggerInteraction.Ignore);
         
+        if(IsOwner){
         if(isGround)
         {
             rigid.AddForce(Vector3.up * pulo, ForceMode.VelocityChange);
@@ -114,6 +118,7 @@ public class Player : NetworkBehaviour
 
         //Atualiza a Máquina de Estados (FSM)
         AttFSM(isGround);
+        }
     }
 
     public void TeamSwap(InputAction.CallbackContext context){
@@ -131,9 +136,11 @@ public class Player : NetworkBehaviour
 
     #region StatesFSM
     void AttFSM(bool isGround){
+
         if(currentMove != Vector2.zero)
         {
             anim.SetBool("movimentando", true);
+            
         }else
         {
             anim.SetBool("movimentando", false);
@@ -142,6 +149,7 @@ public class Player : NetworkBehaviour
         if(isGround)
         {
             anim.SetTrigger("pular");
+            netAnim.SetTrigger("pular");
         }
     }
 
@@ -170,17 +178,18 @@ public class Player : NetworkBehaviour
 
     void OnEnable()
     {
-        mover.Enable();
-        
+
+            mover.Enable();
                 
-        pular.Enable();
-        pular.performed += Pular;
+            pular.Enable();
+            pular.performed += Pular;
 
-        teamSwap.Enable();
-        teamSwap.performed += TeamSwap;
+            teamSwap.Enable();
+            teamSwap.performed += TeamSwap;
 
-        fire.Enable();
-        fire.performed += Fire;
+            fire.Enable();
+            fire.performed += Fire;
+
     }
 
     void OnDisable()
@@ -213,6 +222,7 @@ public class Player : NetworkBehaviour
         rigid = gameObject.GetComponent<Rigidbody>();
         rigid.isKinematic = false;
         anim = gameObject.GetComponent<Animator>();
+        netAnim=this.GetComponent<NetworkAnimator>();
     }
 
     void FixedUpdate()
