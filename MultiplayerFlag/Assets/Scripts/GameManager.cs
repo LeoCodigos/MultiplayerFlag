@@ -10,13 +10,17 @@ public class GameManager : NetworkBehaviour
 
     public static GameManager instance;
 
-    [SerializeField]private TMP_InputField redScore,blueScore;
-    [SerializeField]private NetworkVariable<int>redPoints= new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
-    [SerializeField]private NetworkVariable<int>bluePoints= new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
+    [SerializeField] private TMP_InputField redScore,blueScore;
+    [SerializeField] private NetworkVariable<int>redPoints= new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
+    [SerializeField] private NetworkVariable<int>bluePoints= new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
+    [SerializeField] private TMP_Text ammoText;
 
-
+    #region GET/SET
+    public TMP_Text AmmoText{
+        get => AmmoText1;
+    }
     public NetworkVariable<int>GetRedPoints{
-        get=>redPoints;
+        get => redPoints;
     }
 
     public void SetRedPoints(){
@@ -25,12 +29,16 @@ public class GameManager : NetworkBehaviour
     }
 
     public NetworkVariable<int>GetBluePoints{
-        get=>bluePoints;
+        get => bluePoints;
     }
-     public void SetBluePoints(){
+    public TMP_Text AmmoText1 { get => ammoText; set => ammoText = value; }
+    public TMP_Text AmmoText2 { get => ammoText; set => ammoText = value; }
+
+    public void SetBluePoints(){
         
         bluePoints.Value++;
     }
+    #endregion
 
     void BluePointUpdate(){
         blueScore.text=bluePoints.Value.ToString();

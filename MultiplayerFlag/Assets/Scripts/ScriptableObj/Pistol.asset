@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pistol
   damage: 50
-  fireRate: 2
-  magazineSize: 25
+  fireRate: 300
+  isAutomatic: 1
+  magazineSize: 20
+  maxAmmo: 0
+  clips: 2
   reloadTime: 3
   reloading: 0
-  firing: 0

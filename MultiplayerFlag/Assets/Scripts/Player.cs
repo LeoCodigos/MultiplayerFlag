@@ -17,7 +17,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private GameObject skin;
 
     private Gun gun;
-
+    private Coroutine fireCoroutine;
     [SerializeField] private NetworkVariable<int>teamId=new NetworkVariable<int>(7,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner);
 
 
@@ -26,7 +26,7 @@ public class Player : NetworkBehaviour
     private NetworkAnimator netAnim;
     public LayerMask chao;
     public PlayerInputActions input;
-    private InputAction mover, pular, teamSwap, fire;
+    private InputAction mover, pular, teamSwap, fire, reloading;
 
     #endregion
 
@@ -40,12 +40,14 @@ public class Player : NetworkBehaviour
     #region Methods
     public void SwapTeam(){
         if(!IsOwner)return;
-        if(teamId.Value==7){
-            teamId.Value=6;
+        if(teamId.Value == 7){
+            teamId.Value = 6;
         }else{
-            teamId.Value=7;
+            teamId.Value = 7;
         } 
     }
+
+  
 
     public override void OnNetworkSpawn()
     {
@@ -61,6 +63,19 @@ public class Player : NetworkBehaviour
     {
         if(IsOwner)
         gun.Fire();
+    }
+
+    public void StartFire(InputAction.CallbackContext context)
+    {
+        fireCoroutine = StartCoroutine(gun.AutoFire());
+    }
+    public void EndFire(InputAction.CallbackContext context)
+    {
+        if(fireCoroutine != null)  StopCoroutine(fireCoroutine);
+    }
+    public void Reloading(InputAction.CallbackContext context){
+        if(IsOwner)
+        gun.Reload();
     }
 
     void Movimentar(Vector2 dir)
@@ -188,7 +203,12 @@ public class Player : NetworkBehaviour
             teamSwap.performed += TeamSwap;
 
             fire.Enable();
+            fire.started +=StartFire;
             fire.performed += Fire;
+            fire.canceled +=EndFire;
+
+            reloading.Enable();
+            reloading.performed += Reloading;
 
     }
 
@@ -197,6 +217,7 @@ public class Player : NetworkBehaviour
         pular.Disable();
         teamSwap.Disable();
         fire.Disable();
+        reloading.Disable();
     }
 
     void Awake()
@@ -206,6 +227,7 @@ public class Player : NetworkBehaviour
         pular = input.Player.Jump;
         teamSwap = input.Player.TeamSwap;
         fire = input.Player.Fire;
+        reloading = input.Player.Reloading;
 
         mover.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
                

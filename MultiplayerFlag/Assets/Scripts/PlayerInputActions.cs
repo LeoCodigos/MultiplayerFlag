@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reloading"",
+                    ""type"": ""Button"",
+                    ""id"": ""000b3441-0559-4a32-a9dc-2a3d77e67dfb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -308,11 +317,22 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9733f9af-55a5-420d-81a5-fd2f1d17aef9"",
-                    ""path"": ""<Keyboard>/#(T)"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""TeamSwap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f72cdc3e-7dae-43b9-a8dd-0c54dbba6335"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Reloading"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -905,6 +925,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_TeamSwap = m_Player.FindAction("TeamSwap", throwIfNotFound: true);
+        m_Player_Reloading = m_Player.FindAction("Reloading", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -983,6 +1004,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_TeamSwap;
+    private readonly InputAction m_Player_Reloading;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -992,6 +1014,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @TeamSwap => m_Wrapper.m_Player_TeamSwap;
+        public InputAction @Reloading => m_Wrapper.m_Player_Reloading;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1016,6 +1039,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TeamSwap.started += instance.OnTeamSwap;
             @TeamSwap.performed += instance.OnTeamSwap;
             @TeamSwap.canceled += instance.OnTeamSwap;
+            @Reloading.started += instance.OnReloading;
+            @Reloading.performed += instance.OnReloading;
+            @Reloading.canceled += instance.OnReloading;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1035,6 +1061,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TeamSwap.started -= instance.OnTeamSwap;
             @TeamSwap.performed -= instance.OnTeamSwap;
             @TeamSwap.canceled -= instance.OnTeamSwap;
+            @Reloading.started -= instance.OnReloading;
+            @Reloading.performed -= instance.OnReloading;
+            @Reloading.canceled -= instance.OnReloading;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1222,6 +1251,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnTeamSwap(InputAction.CallbackContext context);
+        void OnReloading(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

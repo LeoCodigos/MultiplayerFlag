@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &135631192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2844533043854647414, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
+  m_PrefabInstance: {fileID: 4093512245668220496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &345584504 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7335556518690056779, guid: dfe4372407c6d37418ebd1f8f8df6afe, type: 3}
@@ -547,6 +558,7 @@ MonoBehaviour:
     m_InternalValue: 0
   bluePoints:
     m_InternalValue: 0
+  ammoText: {fileID: 135631192}
 --- !u!4 &1004650041
 Transform:
   m_ObjectHideFlags: 0
@@ -1078,14 +1090,6 @@ PrefabInstance:
     - target: {fileID: 2309017590422752004, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112663434743761598, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5002381623296926980, guid: 292fe457e6875d64fa7b068709b33adf, type: 3}
-      propertyPath: m_Interactable
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eaf28aa311c9d4482959d48db06c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: ef40d8fb48d26d847abb49da86cf0bf9, type: 2}
   bullet: {fileID: 1809936637213373891, guid: 806b7a7774ad4ff4b8b05d23e9a08c23, type: 3}
 --- !u!1001 &5373501451546862825
 PrefabInstance:

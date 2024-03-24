@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Reloading",
+                    "type": "Button",
+                    "id": "000b3441-0559-4a32-a9dc-2a3d77e67dfb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -286,11 +295,22 @@
                 {
                     "name": "",
                     "id": "9733f9af-55a5-420d-81a5-fd2f1d17aef9",
-                    "path": "<Keyboard>/#(T)",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "TeamSwap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f72cdc3e-7dae-43b9-a8dd-0c54dbba6335",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Reloading",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
