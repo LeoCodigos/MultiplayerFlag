@@ -30,6 +30,7 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region Gets
+
     public Transform GetBack(){
         return back;
     }
@@ -37,7 +38,8 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region Methods
-    public void SwapTeam(){
+    public void SwapTeam()
+    {
         if(!IsOwner)return;
         if(teamId.Value==7){
             teamId.Value=6;
@@ -196,7 +198,7 @@ public class Player : NetworkBehaviour
         mover = input.Player.Move;
         pular = input.Player.Jump;
         teamSwap = input.Player.TeamSwap;
-        fire = input.Player.Fire;
+        //fire = input.Player.Fire;
 
         mover.performed += ctx => Debug.Log(ctx.ReadValueAsObject());
                

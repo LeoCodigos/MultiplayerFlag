@@ -22,14 +22,14 @@ public class CaptureController : MonoBehaviour
       
             redPoints.Value++;
             RedScoreUpdate();
-            blueFlag.ReturnFlag();
+            blueFlag.ReturnFlag_ServerRpc();
        
     }
     public void RedFlagCapture(){
         //bluePoints++;
             bluePoints.Value++;
             BlueScoreUpdate();
-            redFlag.ReturnFlag();
+            redFlag.ReturnFlag_ServerRpc();
         
     }
 
